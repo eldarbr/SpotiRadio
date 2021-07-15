@@ -22,7 +22,7 @@ public class LinkManager extends AppCompatActivity {
         if (Intent.ACTION_SEND.equals(action) && type != null) {
             if ("text/plain".equals(type)) {
                 handleSendText(intent);
-            } else showError((byte)1);
+            }
         }
     }
 
@@ -31,7 +31,7 @@ public class LinkManager extends AppCompatActivity {
         if (sharedText == null) return;
         Pattern p = Pattern.compile("http[s]?://.*\\.spotify\\.com/(track|artist|album)/.+\\?.*");
         if (!p.matcher(sharedText).matches()) {
-            showError((byte)0);
+            showError();
             return;
         }
         Uri url = Uri.parse(sharedText);
@@ -41,12 +41,11 @@ public class LinkManager extends AppCompatActivity {
         System.exit(0);
     }
 
-    void showError(byte id){
-        CharSequence[] errors = {"Input string error. Please contact the developer.",
-                "Wrong input data format. Please contact the developer."};
+    void showError(){
+        CharSequence error = "Input string error. Please contact the developer.";
         Context context = getApplicationContext();
         int duration = Toast.LENGTH_LONG;
-        Toast toast = Toast.makeText(context, errors[id], duration);
+        Toast toast = Toast.makeText(context, error, duration);
         toast.show();
     }
 }
