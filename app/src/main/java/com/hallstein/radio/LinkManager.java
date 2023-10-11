@@ -29,7 +29,7 @@ public class LinkManager extends AppCompatActivity {
     void handleSendText(Intent intent) {
         String sharedText = intent.getStringExtra(Intent.EXTRA_TEXT);
         if (sharedText == null) return;
-        Pattern p = Pattern.compile("http[s]?://.*\\.spotify\\.com/(track|artist|album)/.+\\?.*");
+        Pattern p = Pattern.compile("http[s]?://.*\\.spotify\\.com/(track|artist|album|playlist)/.+\\?.*");
         if (!p.matcher(sharedText).matches()) {
             showError();
             return;
